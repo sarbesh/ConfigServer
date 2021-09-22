@@ -8,7 +8,7 @@ spring:
     config:
       server:
         git:
-          uri: ${CONFIG_SERVER_URL:file://${user.home}/Java/configrepo}
+          uri: ${CONFIG_REPO_URL:file://${user.home}/Java/configrepo}
           password: ${CONFIG_SERVER_PASSWORD:password}
   security:
     user:
