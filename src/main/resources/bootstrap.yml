@@ -6,6 +6,7 @@ spring:
     include: eureka,security,configserver
   cloud:  #Git repo location
     config:
+      enable: true
       server:
         git:
           uri: ${CONFIG_REPO_URL:file://${user.home}/Java/configrepo}
@@ -23,13 +24,13 @@ eureka:
     region: default
     registryFetchIntervalSeconds: 120
     serviceUrl:
-      defaultZone: ${EUREKA_URL:http://user:password@localhost:8761}/eureka/
+      defaultZone: ${EUREKA_URL:http://user:password@localhost:8761}/eureka
   instance:
-    hostname: ${vcap.application.uris[0]:localhost}
+#    hostname: ${vcap.application.uris[0]:Config-Server}
     nonSecurePort: 80
-    leaseRenewalIntervalInSeconds: 120
+    leaseRenewalIntervalInSeconds: 180
     metadataMap:
       user: user
       password: ${spring.cloud.config.server.git.password}
       configPath: /config
-      instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}:${random.value}
+      instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
