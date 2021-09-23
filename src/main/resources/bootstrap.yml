@@ -3,42 +3,11 @@ spring:
   application:
     name: Config-Server
   profiles:
-    include: eureka,security,configserver
+    active: local
   cloud:  #Git repo location
     config:
       enable: true
       server:
         git:
           uri: ${CONFIG_REPO_URL:file://${user.home}/Java/configrepo}
-          password: ${CONFIG_SERVER_PASSWORD:password}
-  security:
-    user:
-      password: ${spring.cloud.config.server.git.password}
-
-#Server port
-server:
-  port: ${PORT:8888}
-
-eureka:
-  client:
-    region: default
-    registryFetchIntervalSeconds: 120
-    serviceUrl:
-      defaultZone: ${EUREKA_URL:http://user:password@localhost:8761}/eureka
-  instance:
-    hostname: ${HOST_NAME:Config-Server}
-    nonSecurePort: 80
-    leaseRenewalIntervalInSeconds: 180
-    metadataMap:
-      user: user
-      password: ${spring.cloud.config.server.git.password}
-      configPath: /config
-      instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
-
-management:
-  security:
-    enabled: false
-  endpoints:
-    web:
-      exposure:
-        include: "*"
+        bootstrap: true
