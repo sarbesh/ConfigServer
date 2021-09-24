@@ -9,5 +9,5 @@ spring:
       enable: true
       server:
         git:
-          uri: ${CONFIG_REPO_URL:file://${user.home}/Java/configrepo}
+          uri: ${CONFIG_REPO_URL:file://${user.home}/Java/spring-cloud-microservice/ConfigRepo}
         bootstrap: true
