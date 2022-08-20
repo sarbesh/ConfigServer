@@ -7,5 +7,5 @@ spring:
       enable: true
       server:
         git:
-          uri: ${CONFIG_REPO_URL:file://${user.home}/Java/ConfigRepo}
+          uri: ${CONFIG_REPO_URL:file://${user.home}/workspace/ConfigRepo}
         bootstrap: true
